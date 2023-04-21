@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WeatherFlow Overlay</title>
+</head>
+<body>
+<head>
+  <h1>WeatherFlow Overlay</h1>
+  <script>
+    function refresh() {
+      var x = document.getElementById('log');
+      x.contentWindow.location.reload();
+      var t = setTimeout(refresh, 5000);
+    }
+  </script>
+</head>
+<body onload="refresh"> 
+  <iframe id="log" src="/axis-cgi/admin/systemlog.cgi?appname=weatherflow" style="height:600px;width:100%;border:none;" ></iframe>
+</body>
+</html>
