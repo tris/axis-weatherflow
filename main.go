@@ -53,11 +53,9 @@ func main() {
 
 	fmt.Printf("Using device ID: %d\n", deviceID)
 
-	client, err := weatherflow.NewClient(apiToken, []int{deviceID}, log.Printf)
-	if err != nil {
-		log.Fatalf("Error creating WeatherFlow client: %v", err)
-	}
+	client := weatherflow.NewClient(apiToken, nil, log.Printf)
 
+	var err error
 	overlay, err = axis.NewOverlay(axis.OverlayProperties{
 		Position: stringPtr(position),
 	})
@@ -65,6 +63,7 @@ func main() {
 		log.Fatalf("Error creating overlay: %v", err)
 	}
 
+	client.AddDevice(deviceID)
 	client.Start(handleMessage)
 
 	// Wait for an interrupt signal

@@ -5,7 +5,7 @@ ARG UBUNTU_VERSION=22.04
 ARG REPO=axisecp
 ARG SDK=acap-native-sdk
 
-FROM golang:1.20-alpine AS builder
+FROM golang:1.24-alpine AS builder
 ARG GOARCH
 ENV GOARCH=${GOARCH}
 WORKDIR /opt/build
@@ -24,4 +24,4 @@ RUN . /opt/axis/acapsdk/environment-setup* && acap-build ./
 
 FROM scratch
 COPY --from=sdk /opt/app/*.eap /
-CMD ""
+CMD [""]
